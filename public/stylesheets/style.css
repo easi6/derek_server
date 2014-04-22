@@ -1,12 +1,19 @@
 
 @import url(http://fonts.googleapis.com/css?family=Quantico);
-
-html, body {
-
-    background: #f2f2f2;
-    overflow: hidden;
-    margin: 0;
+body {
+	overflow: hidden;
 }
+
+
+#bg{
+  background-image: url(bg.png);
+	background-position: 0px 0px;
+	animation: animatedBackground 200s linear infinite;
+  -webkit-animation: animatedBackground 200s linear infinite;
+  -moz-animation: animatedBackground 200s linear infinite;
+  -ms-animation: animatedBackground 200s linear infinite;
+  -o-animation: animatedBackground 200s linear infinite;
+  animation: animatedBackground 200s linear infinite;}
 
 /* Info */
 
@@ -34,6 +41,35 @@ html, body {
     0% { transform: rotateY(120deg); }
     100% { transform: rotateY(0deg); }
 }
+
+/* background key */
+@-webkit-keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position:  0 100%; }
+}
+
+@-moz-keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position:  0 100%; }
+}
+
+@-ms-keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position:  0 100%; }
+}
+
+@-o-keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position:  0 100%; }
+}
+
+@keyframes animatedBackground {
+	from { background-position: 0 0; }
+	to { background-position:  0 100%; }
+}
+
+
+
 
 .info {
 
