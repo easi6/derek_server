@@ -69,7 +69,13 @@ html, body {
   -moz-animation: animatedBackground 20s linear infinite !important;
   -ms-animation: animatedBackground 20s linear infinite !important;
   -o-animation: animatedBackground 20s linear infinite !important;
-  animation: animatedBackground 20s linear infinite; !important}
+  animation: animatedBackground 20s linear infinite; !important
+   -webkit-animation-direction: alternate !important;
+  -moz-animation-direction: alternate !important;
+  -ms-animation-direction: alternate !important;
+  -o-animation-direction: alternate !important;
+  animation-direction: alternate !important;
+}
 
 .info {
 
