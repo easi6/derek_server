@@ -125,11 +125,24 @@
             function clicked(kind)
             {
                 $('#wrap_img').hide();
+                var newImg = $('#wrap_img').find('img');
                 console.log('clicked'+kind);
+                newImg.addClass('clicked_img');
                 if(kind == 0)
+                {
+                    newImg.addClass("positive_click");
                     positiveClickCount++;
+                }
                 else if(kind == 1)
+                {
+                    newImg.addClass("negative_click");
                     negativeClickCount++;
+                }
+                else
+                {
+                    newImg.addClass("normal_click");
+                }
+                $('#stack_img').append($(newImg[0].outerHTML));
             }
             function startShow()
             {
@@ -272,6 +285,8 @@
                 });
             });
         </script>
+        <div id ="stack_img">
+        </div>
         <input type="button" onClick="startGame()" id="btn_start" class="btn_start" value='Start'>
         <audio id="bgm" src="music/bgm.mp3"></audio>
         <div id="positive_ending" class="ending" style="display: block;">
