@@ -3,7 +3,11 @@
     <head>
         <title>Derek PR3</title>
         <link rel="stylesheet" href="css/example.css">
+        <link rel="stylesheet" href="css/style.css">
+
         <script src="bower_components/jquery/dist/jquery.js"></script>
+        <script src="bower_components/easyModal/jquery.easyModal.js"></script>
+
         <style type="text/css">
         </style>
     </head>
@@ -106,27 +110,18 @@
             };
         </script>
         <script>
-            var lyric = [{
-                "word": "kim",
-                "kind": "0"
-            }, {
-                "word": "dae",
-                "kind": "0"
-            }, {
-                "word": "won",
-                "kind": "1"
-            }, {
-                "word": "ma",
-                "kind": "0"
-            }, {
-                "word": "inma",
-                "kind": "0"
-            }, {
-                "word": "ya",
-                "kind": "1"
-            }];
+            var kind = {'negative','neutral','positive'};
+            var kindIndex = [
+                {'positive_start':'1'},
+                {'positive_end':'20'},
+                {'nagetive_start':'21'},
+                {'nagetive_end':'39'},
+                {'neutral_start':'40'},
+                {'neutral_end':'49'}
+            ];
             var count = 0;
-            $(document).ready(function () {
+            function startShow()
+            {
                 (function makeDiv() {
                     var divsize = ((Math.random() * 100) + 50).toFixed();
                     var color = '#' + Math.round(0xffffff * Math.random()).toString(16);
@@ -150,7 +145,7 @@
                         'left': posx + 'px',
                         'top': posy + 'px',
                         'display': 'none'
-                    }).appendTo('body').fadeIn(100).delay(300).fadeOut(200, function () {
+                    }).appendTo('body').fadeIn(200).delay(2000).fadeOut(200, function () {
                         $(this).remove();
                         makeDiv();
                     });
@@ -209,8 +204,28 @@
                         for (j = 0; j < max; j++) demo.spawn(touch.x, touch.y);
                     }
                 };
+            }
+            function startGame()
+            {
+                $('#btn_start').trigger('closeModal');
+                startShow();
+                //start bgm
+                var AudioTag = document.getElementById("bgm");
+                AudioTag.play(); //再生
+            }
+
+            $(document).ready(function () {
+                $('#btn_start').easyModal({
+                    autoOpen: true,
+                    overlayOpacity: 0.3,
+                    overlayColor: "#333",
+                    overlayClose: false,
+                    closeOnEscape: false,
+                });
             });
         </script>
+        <input type="button" onClick="startGame()" id="btn_start" class="btn_start" value='Start'>
+        <audio id="bgm" src="music/bgm.mp3"></audio>
     </body>
 </html>
 
