@@ -110,45 +110,62 @@
             };
         </script>
         <script>
-            var kind = {'negative','neutral','positive'};
-            var kindIndex = [
-                {'positive_start':'1'},
-                {'positive_end':'20'},
-                {'nagetive_start':'21'},
-                {'nagetive_end':'39'},
-                {'neutral_start':'40'},
-                {'neutral_end':'49'}
-            ];
+            var positiveClickCount = 0;
+            var negativeClickCount = 0;            
+
+            var kind = new Array('positive','negative','neutral');
+            var kindIndex = 
+                {'positive_start':'1',
+                'positive_count':'20',
+                'negative_start':'21',
+                'negative_count':'19',
+                'neutral_start':'40',
+                'neutral_count':'10'};
             var count = 0;
+            function clicked(kind)
+            {
+                console.log('clicked'+kind);
+                if(kind == 0)
+                    positiveClickCount++;
+                else if(kind == 1)
+                    negativeClickCount++;
+                if(positiveClickCount == 14 || negativeClickCount == 14)
+                    alert('game over');
+                
+            }
             function startShow()
             {
                 (function makeDiv() {
-                    var divsize = ((Math.random() * 100) + 50).toFixed();
-                    var color = '#' + Math.round(0xffffff * Math.random()).toString(16);
-                    count++;
-                    var divTag = '<div>' + lyric[count % lyric.length].word + '</div>';
+                    var randomInt = parseInt(Math.random()*3);
+                    console.log (kind[randomInt]);
+                    console.log ((kindIndex[kind[randomInt] + '_count']));
+                    var randomNum = parseInt(kindIndex[kind[randomInt] + '_start']) + parseInt(Math.random() * (kindIndex[kind[randomInt] + '_count']));
+                    var imagePath = 'images/' + kind[randomInt] + '/words-' + randomNum + '.png';
+                    
+                    var divTag = '<div id = "wrap_img" onclick="clicked(' +randomInt+')"></div>';
                     $newdiv = $(divTag).css({
                         'color': 'white',
                         'vertical-align': 'middle',
                         'text-align': 'center',
-                        'font-size': divsize + 'px',
-                        'width': '2em',
-                        'height': '2em',
-                        'border-radius': '50%',
-                        'background-color': color
+                        'font-size': '100px',
                     });
-                    var posx = (Math.random() * ($(document).width() - divsize)).toFixed();
-                    var posy = (Math.random() * ($(document).height() - divsize)).toFixed();
-
+                    $newdiv.append("<img src='" + imagePath + "'>");
+                    console.log(imagePath);
+                    
+                    var posx = (Math.random() * ($(document).width() - 300)).toFixed();
+                    var posy = (Math.random() * ($(document).height()/2-100)).toFixed();
+                    console.log(posx);
+                    console.log(posy);
                     $newdiv.css({
                         'position': 'absolute',
                         'left': posx + 'px',
                         'top': posy + 'px',
                         'display': 'none'
-                    }).appendTo('body').fadeIn(200).delay(2000).fadeOut(200, function () {
+                    }).appendTo('body').fadeIn(100).delay(2000).fadeOut(100, function () {
                         $(this).remove();
                         makeDiv();
                     });
+
                 })();
                 var MAX_PARTICLES = 280;
                 var COLOURS = ['#69D2E7', '#A7DBD8', '#E0E4CC', '#F38630', '#FA6900', '#FF4E50', '#F9D423'];
