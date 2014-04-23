@@ -146,13 +146,13 @@
                     //버튼 클릭 수가 엔딩 수를 넘었는지 판단.
                     console.log('positiveClickCount' + positiveClickCount);
                     console.log('negativeClickCount' + negativeClickCount);
-                    if(positiveClickCount >= 14)
+                    if(positiveClickCount - negativeClickCount >= 14)
                     {
                         endGame();
                         $('#positive_ending').trigger('openModal');
                         return;
                     }
-                    if(negativeClickCount >= 14)
+                    if(negativeClickCount - negativeClickCount >= 14)
                     {
                         endGame();
                         $('#negative_ending').trigger('openModal');
